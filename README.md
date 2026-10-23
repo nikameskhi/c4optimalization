@@ -6,13 +6,13 @@ This project studies how to design and optimize complete playing strategies for 
 
 Connect Four is a two-player, turn-based, perfect-information game played on a 6-row by 7-column board. On each turn, a player drops a token into a non-full column, where it occupies the lowest available cell. A player wins by connecting four tokens horizontally, vertically, or diagonally; a full board without a winner is a draw.
 
-At a decision point, the strategy receives the board state, the player to move, and the legal moves. Whole-strategy evaluation also depends on the selected opponents, match rules, and experiment configuration. The main formulation is to find strategy parameters \(\theta\) that maximize average match score:
+At a decision point, the strategy receives the board state, the player to move, and the legal moves. Whole-strategy evaluation also depends on the selected opponents, match rules, and experiment configuration. The main formulation is to find strategy parameters $\theta$ that maximize average match score:
 
-\[
-F(\theta) = \frac{1}{N}\sum_{i=1}^{N} r_i,
-\]
+$$
+F(\theta) = \frac{1}{N}\sum_{i=1}^{N} r_i
+$$
 
-where each game result \(r_i\) is 1 for a win, 0.5 for a draw, and 0 for a loss. Candidate evaluation uses a fixed opponent set and conditions; parameters should be tuned on training games and final results measured on a separate test set.
+where each game result $r_i$ is 1 for a win, 0.5 for a draw, and 0 for a loss. Candidate evaluation uses a fixed opponent set and conditions; parameters should be tuned on training games and final results measured on a separate test set.
 
 ## Problem classification
 
