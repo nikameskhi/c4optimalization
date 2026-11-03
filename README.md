@@ -47,7 +47,108 @@ Possible variants include discrete rather than continuous weights, rule-based st
 ## Project contents
 
 - `analysis.pdf` – detailed analysis of the problem and proposed experiment plan.
+- `connect_four.py` – command-line runner and match evaluation.
+- `connect_four_core.py` – board rules, legal moves, random baseline, and game loop.
+- `heuristic_strategy.py` – weighted heuristic strategy.
+- `minimax_strategy.py` – alpha-beta Minimax strategy.
+- `monte_carlo_strategy.py` – random-rollout Monte Carlo strategy.
+- `mcts_strategy.py` – UCT Monte Carlo tree search strategy.
+- `run_experiments.py` – repeated strategy evaluation, result export, and SVG chart generation.
+- `test_connect_four.py` – rule, constraint, strategy, and evaluation checks.
+- `test_experiments.py` – experiment runner and report output checks.
 
-## Running the project
+## Model Implementation and Verification with a Baseline
 
-Run instructions will be added once the implementation and its dependencies are in place.
+The model uses a 6×7 board with `0` for an empty cell and `1` or `2` for a player's token. The shared game code validates boards and moves, lists non-full columns, drops tokens to the lowest empty cell, detects wins in all four directions, and ends games on a win or a full-board draw. Invalid moves raise an error instead of being accepted.
+
+Each strategy represents a complete way to choose moves throughout a game:
+
+- The **heuristic** takes an immediate win, blocks one immediate opponent win if possible, then ranks moves by weighted center control and open four-cell lines. Its `center` and `open_windows` weights are bounded from 0 to 1.
+- **Minimax** searches to a configurable depth with alpha-beta pruning and uses a weighted board evaluation at non-terminal leaves.
+- **Monte Carlo** evaluates possible moves with a fixed number of random complete-game rollouts.
+- **MCTS** uses UCT to allocate a fixed iteration budget across a search tree, with random rollouts to estimate outcomes.
+- The **baseline** selects uniformly at random from legal columns.
+
+### Run the model and baseline
+
+The project uses only the Python standard library. Run one strategy against the random baseline with:
+
+```powershell
+python connect_four.py --strategy heuristic --games-per-side 10 --seed 0
+python connect_four.py --strategy minimax --depth 4 --games-per-side 10 --seed 0
+python connect_four.py --strategy monte-carlo --simulations 100 --games-per-side 10 --seed 0
+python connect_four.py --strategy mcts --iterations 500 --games-per-side 10 --seed 0
+```
+
+The evaluator tests each strategy in both board seats and alternates the
+starting player. It reports wins, draws, losses, games, and mean score, where
+win = 1, draw = 0.5, and loss = 0.
+
+Run the verification tests with:
+
+```powershell
+python -m unittest -v
+```
+
+The tests cover board rules, legal-move constraints, immediate wins and blocks,
+search budget validation, seeded reproducibility, both player positions, and
+the experiment output files.
+
+### Run repeated experiments and visualize results
+
+Run the four strategies for multiple independent seeds against the random baseline:
+
+```powershell
+python run_experiments.py --runs 5 --games-per-side 10 --seed 0 --output-dir results
+```
+
+Select one or more strategies and adjust their budgets as needed:
+
+```powershell
+python run_experiments.py --strategies heuristic minimax --runs 5 --games-per-side 10 --depth 4
+python run_experiments.py --strategies mcts --runs 5 --games-per-side 10 --iterations 500
+```
+
+Each run evaluates the candidate in both board seats and both starting orders.
+The output directory contains:
+
+- `strategy_results.csv` – per-run outcomes, seeds, parameters, and elapsed time.
+- `strategy_summary.csv` – average scores, variability, outcomes, and runtime.
+- `strategy_results.json` – full run data and experiment settings.
+- `strategy_scores.svg` – mean score with one-standard-deviation error bars.
+- `strategy_runtime.svg` – mean evaluation time with one-standard-deviation error bars.
+
+### Initial results
+
+The current sample used 3 runs per strategy, 4 games per board seat per run
+(8 games per run), seed `41`, Minimax depth `3`, 10 Monte Carlo simulations per
+move, and 25 MCTS iterations per move. Both heuristic weights were `0.5`.
+
+| Strategy | Mean score | Score standard deviation | Mean wins / draws / losses per 8-game run | Mean run time |
+|---|---:|---:|---:|---:|
+| Heuristic | 0.958 | 0.059 | 7.67 / 0 / 0.33 | 0.067 s |
+| Minimax | 0.958 | 0.059 | 7.67 / 0 / 0.33 | 0.357 s |
+| Monte Carlo | 0.958 | 0.059 | 7.67 / 0 / 0.33 | 2.656 s |
+| MCTS | 1.000 | 0.000 | 8 / 0 / 0 | 0.935 s |
+
+These are preliminary smoke-test results, not enough to conclude that one
+strategy is best. There are only three runs, the random baseline is weak, and
+the methods' configured search budgets are not directly comparable. The charts
+and raw results are saved in the `results` folder.
+
+#### Mean score
+
+![Strategy mean score with standard deviation](./results/strategy_scores.svg)
+
+#### Evaluation runtime
+
+![Mean evaluation runtime with standard deviation](./results/strategy_runtime.svg)
+
+### Next goals
+
+The next step is to build on this model for the first-results milestone:
+
+1. Run more games and independent seeds for more stable comparisons.
+2. Add stronger opponents, such as a tactical win/block baseline, because random play is easy to beat.
+3. Use a justified common computational budget or time limit and compare both score and runtime.
+4. Analyze results by player seat and starting order, and decide whether to tune budgets or improve a method.
