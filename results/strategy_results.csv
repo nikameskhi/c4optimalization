@@ -1,0 +1,13 @@
+strategy,run,seed,parameters,wins,draws,losses,games,score,first_player_games,second_player_games,started_first_games,started_second_games,elapsed_seconds
+heuristic,1,41,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.04778299999452429
+heuristic,2,10041,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",7,0,1,8,0.875,4,4,4,4,0.09000229999946896
+heuristic,3,20041,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.06319709999661427
+minimax,1,41,"{""depth"": 3, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.2769394999995711
+minimax,2,10041,"{""depth"": 3, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",7,0,1,8,0.875,4,4,4,4,0.49199689999659313
+minimax,3,20041,"{""depth"": 3, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.3006169000000227
+monte-carlo,1,41,"{""simulations_per_move"": 10}",7,0,1,8,0.875,4,4,4,4,2.486886800004868
+monte-carlo,2,10041,"{""simulations_per_move"": 10}",8,0,0,8,1.0,4,4,4,4,2.8350487999996403
+monte-carlo,3,20041,"{""simulations_per_move"": 10}",8,0,0,8,1.0,4,4,4,4,2.6469450000004144
+mcts,1,41,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 25}",8,0,0,8,1.0,4,4,4,4,0.9592929999998887
+mcts,2,10041,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 25}",8,0,0,8,1.0,4,4,4,4,0.9346331999986432
+mcts,3,20041,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 25}",8,0,0,8,1.0,4,4,4,4,0.9108330999952159
