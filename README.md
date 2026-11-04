@@ -117,6 +117,7 @@ The output directory contains:
 - `strategy_results.json` – full run data and experiment settings.
 - `strategy_scores.svg` – mean score with one-standard-deviation error bars.
 - `strategy_runtime.svg` – mean evaluation time with one-standard-deviation error bars.
+- `strategy_outcomes.svg` – mean wins, draws, and losses per run (stacked bars).
 
 ### Initial results
 

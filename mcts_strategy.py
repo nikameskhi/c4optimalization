@@ -14,6 +14,7 @@ from connect_four_core import (
     _validate_search_request,
     drop_token,
     legal_moves,
+    winner,
 )
 from monte_carlo_strategy import _random_rollout
 
@@ -88,7 +89,7 @@ class MCTSStrategy:
                     player_to_move=3 - node.player_to_move,
                     move=column,
                     parent=node,
-                    untried_moves=legal_moves(child_board),
+                    untried_moves=[] if winner(child_board) else legal_moves(child_board),
                     children=[],
                 )
                 node.parent.children.append(node)

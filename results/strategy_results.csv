@@ -1,13 +1,21 @@
 strategy,run,seed,parameters,wins,draws,losses,games,score,first_player_games,second_player_games,started_first_games,started_second_games,elapsed_seconds
-heuristic,1,41,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.04778299999452429
-heuristic,2,10041,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",7,0,1,8,0.875,4,4,4,4,0.09000229999946896
-heuristic,3,20041,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.06319709999661427
-minimax,1,41,"{""depth"": 3, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.2769394999995711
-minimax,2,10041,"{""depth"": 3, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",7,0,1,8,0.875,4,4,4,4,0.49199689999659313
-minimax,3,20041,"{""depth"": 3, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",8,0,0,8,1.0,4,4,4,4,0.3006169000000227
-monte-carlo,1,41,"{""simulations_per_move"": 10}",7,0,1,8,0.875,4,4,4,4,2.486886800004868
-monte-carlo,2,10041,"{""simulations_per_move"": 10}",8,0,0,8,1.0,4,4,4,4,2.8350487999996403
-monte-carlo,3,20041,"{""simulations_per_move"": 10}",8,0,0,8,1.0,4,4,4,4,2.6469450000004144
-mcts,1,41,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 25}",8,0,0,8,1.0,4,4,4,4,0.9592929999998887
-mcts,2,10041,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 25}",8,0,0,8,1.0,4,4,4,4,0.9346331999986432
-mcts,3,20041,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 25}",8,0,0,8,1.0,4,4,4,4,0.9108330999952159
+heuristic,1,0,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,0.09019309999712277
+heuristic,2,10000,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,0.09750279999570921
+heuristic,3,20000,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,0.08898049998970237
+heuristic,4,30000,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",19,0,1,20,0.95,10,10,10,10,0.10323829999833833
+heuristic,5,40000,"{""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,0.09392069999012165
+minimax,1,0,"{""depth"": 4, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,1.5047515999904135
+minimax,2,10000,"{""depth"": 4, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,1.1867679000133649
+minimax,3,20000,"{""depth"": 4, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,1.2335601999948267
+minimax,4,30000,"{""depth"": 4, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,1.8726462999911746
+minimax,5,40000,"{""depth"": 4, ""weights"": {""center"": 0.5, ""open_windows"": 0.5}}",20,0,0,20,1.0,10,10,10,10,1.2903190999932121
+monte-carlo,1,0,"{""simulations_per_move"": 100}",20,0,0,20,1.0,10,10,10,10,67.69856109999819
+monte-carlo,2,10000,"{""simulations_per_move"": 100}",20,0,0,20,1.0,10,10,10,10,48.87490710000566
+monte-carlo,3,20000,"{""simulations_per_move"": 100}",20,0,0,20,1.0,10,10,10,10,50.92961940000532
+monte-carlo,4,30000,"{""simulations_per_move"": 100}",20,0,0,20,1.0,10,10,10,10,49.979216499996255
+monte-carlo,5,40000,"{""simulations_per_move"": 100}",20,0,0,20,1.0,10,10,10,10,49.054731699987315
+mcts,1,0,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 500}",20,0,0,20,1.0,10,10,10,10,34.82307589999982
+mcts,2,10000,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 500}",20,0,0,20,1.0,10,10,10,10,28.08991120000428
+mcts,3,20000,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 500}",20,0,0,20,1.0,10,10,10,10,39.63317079999251
+mcts,4,30000,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 500}",20,0,0,20,1.0,10,10,10,10,27.912499500002014
+mcts,5,40000,"{""exploration"": 1.4142135623730951, ""iterations_per_move"": 500}",20,0,0,20,1.0,10,10,10,10,32.14402120000159

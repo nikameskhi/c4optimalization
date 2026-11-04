@@ -6,41 +6,41 @@
 <line x1="90" y1="410.0" x2="865" y2="410.0" stroke="#d9d9d9"/>
 <text x="78" y="415.0" text-anchor="end" font-family="sans-serif" font-size="13">0.00</text>
 <line x1="90" y1="343.0" x2="865" y2="343.0" stroke="#d9d9d9"/>
-<text x="78" y="348.0" text-anchor="end" font-family="sans-serif" font-size="13">0.62</text>
+<text x="78" y="348.0" text-anchor="end" font-family="sans-serif" font-size="13">13.32</text>
 <line x1="90" y1="276.0" x2="865" y2="276.0" stroke="#d9d9d9"/>
-<text x="78" y="281.0" text-anchor="end" font-family="sans-serif" font-size="13">1.23</text>
+<text x="78" y="281.0" text-anchor="end" font-family="sans-serif" font-size="13">26.64</text>
 <line x1="90" y1="209.0" x2="865" y2="209.0" stroke="#d9d9d9"/>
-<text x="78" y="214.0" text-anchor="end" font-family="sans-serif" font-size="13">1.85</text>
+<text x="78" y="214.0" text-anchor="end" font-family="sans-serif" font-size="13">39.96</text>
 <line x1="90" y1="142.0" x2="865" y2="142.0" stroke="#d9d9d9"/>
-<text x="78" y="147.0" text-anchor="end" font-family="sans-serif" font-size="13">2.46</text>
+<text x="78" y="147.0" text-anchor="end" font-family="sans-serif" font-size="13">53.28</text>
 <line x1="90" y1="75.0" x2="865" y2="75.0" stroke="#d9d9d9"/>
-<text x="78" y="80.0" text-anchor="end" font-family="sans-serif" font-size="13">3.08</text>
+<text x="78" y="80.0" text-anchor="end" font-family="sans-serif" font-size="13">66.59</text>
 <line x1="90" y1="75" x2="90" y2="410" stroke="#333"/>
 <line x1="90" y1="410" x2="865" y2="410" stroke="#333"/>
 <text x="22" y="242.5" transform="rotate(-90 22 242.5)" text-anchor="middle" font-family="sans-serif" font-size="14">Mean elapsed time per run (seconds)</text>
-<rect x="141.9" y="402.7" width="90.0" height="7.3" fill="#4472C4"/>
-<line x1="186.9" y1="400.8" x2="186.9" y2="404.6" stroke="#222" stroke-width="2"/>
-<line x1="178.9" y1="400.8" x2="194.9" y2="400.8" stroke="#222" stroke-width="2"/>
-<line x1="178.9" y1="404.6" x2="194.9" y2="404.6" stroke="#222" stroke-width="2"/>
+<rect x="141.9" y="409.5" width="90.0" height="0.5" fill="#4472C4"/>
+<line x1="186.9" y1="409.5" x2="186.9" y2="409.5" stroke="#222" stroke-width="2"/>
+<line x1="178.9" y1="409.5" x2="194.9" y2="409.5" stroke="#222" stroke-width="2"/>
+<line x1="178.9" y1="409.5" x2="194.9" y2="409.5" stroke="#222" stroke-width="2"/>
 <text x="186.9" y="435" text-anchor="middle" font-family="sans-serif" font-size="14">heuristic</text>
-<text x="186.9" y="392.7" text-anchor="middle" font-family="sans-serif" font-size="13">0.07 ± 0.02 s</text>
-<rect x="335.6" y="371.2" width="90.0" height="38.8" fill="#70AD47"/>
-<line x1="380.6" y1="360.7" x2="380.6" y2="381.7" stroke="#222" stroke-width="2"/>
-<line x1="372.6" y1="360.7" x2="388.6" y2="360.7" stroke="#222" stroke-width="2"/>
-<line x1="372.6" y1="381.7" x2="388.6" y2="381.7" stroke="#222" stroke-width="2"/>
+<text x="186.9" y="399.5" text-anchor="middle" font-family="sans-serif" font-size="13">0.09 ± 0.01 s</text>
+<rect x="335.6" y="402.9" width="90.0" height="7.1" fill="#70AD47"/>
+<line x1="380.6" y1="401.6" x2="380.6" y2="404.1" stroke="#222" stroke-width="2"/>
+<line x1="372.6" y1="401.6" x2="388.6" y2="401.6" stroke="#222" stroke-width="2"/>
+<line x1="372.6" y1="404.1" x2="388.6" y2="404.1" stroke="#222" stroke-width="2"/>
 <text x="380.6" y="435" text-anchor="middle" font-family="sans-serif" font-size="14">minimax</text>
-<text x="380.6" y="361.2" text-anchor="middle" font-family="sans-serif" font-size="13">0.36 ± 0.10 s</text>
-<rect x="529.4" y="120.9" width="90.0" height="289.1" fill="#ED7D31"/>
-<line x1="574.4" y1="105.5" x2="574.4" y2="136.4" stroke="#222" stroke-width="2"/>
+<text x="380.6" y="392.9" text-anchor="middle" font-family="sans-serif" font-size="13">1.42 ± 0.25 s</text>
+<rect x="529.4" y="141.8" width="90.0" height="268.2" fill="#ED7D31"/>
+<line x1="574.4" y1="105.5" x2="574.4" y2="178.2" stroke="#222" stroke-width="2"/>
 <line x1="566.4" y1="105.5" x2="582.4" y2="105.5" stroke="#222" stroke-width="2"/>
-<line x1="566.4" y1="136.4" x2="582.4" y2="136.4" stroke="#222" stroke-width="2"/>
+<line x1="566.4" y1="178.2" x2="582.4" y2="178.2" stroke="#222" stroke-width="2"/>
 <text x="574.4" y="435" text-anchor="middle" font-family="sans-serif" font-size="14">monte-carlo</text>
-<text x="574.4" y="110.9" text-anchor="middle" font-family="sans-serif" font-size="13">2.66 ± 0.14 s</text>
-<rect x="723.1" y="308.3" width="90.0" height="101.7" fill="#8064A2"/>
-<line x1="768.1" y1="306.1" x2="768.1" y2="310.4" stroke="#222" stroke-width="2"/>
-<line x1="760.1" y1="306.1" x2="776.1" y2="306.1" stroke="#222" stroke-width="2"/>
-<line x1="760.1" y1="310.4" x2="776.1" y2="310.4" stroke="#222" stroke-width="2"/>
+<text x="574.4" y="131.8" text-anchor="middle" font-family="sans-serif" font-size="13">53.31 ± 7.23 s</text>
+<rect x="723.1" y="246.4" width="90.0" height="163.6" fill="#8064A2"/>
+<line x1="768.1" y1="224.3" x2="768.1" y2="268.6" stroke="#222" stroke-width="2"/>
+<line x1="760.1" y1="224.3" x2="776.1" y2="224.3" stroke="#222" stroke-width="2"/>
+<line x1="760.1" y1="268.6" x2="776.1" y2="268.6" stroke="#222" stroke-width="2"/>
 <text x="768.1" y="435" text-anchor="middle" font-family="sans-serif" font-size="14">mcts</text>
-<text x="768.1" y="298.3" text-anchor="middle" font-family="sans-serif" font-size="13">0.93 ± 0.02 s</text>
-<text x="450.0" y="496" text-anchor="middle" font-family="sans-serif" font-size="13">3 runs per strategy; error bars show one standard deviation</text>
+<text x="768.1" y="236.4" text-anchor="middle" font-family="sans-serif" font-size="13">32.52 ± 4.40 s</text>
+<text x="450.0" y="496" text-anchor="middle" font-family="sans-serif" font-size="13">5 runs per strategy; error bars show one standard deviation</text>
 </svg>

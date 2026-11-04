@@ -112,6 +112,10 @@ def run_experiments(
                 factory, games_per_side=games_per_side, seed=run_seed
             )
             elapsed = time.perf_counter() - start
+            print(
+                            f"{strategy_name} run {run_number + 1}/{runs} done in {elapsed:.1f}s",
+                            flush=True,
+                        )
             rows.append(
                 ExperimentRun(
                     strategy=strategy_name,
@@ -161,6 +165,99 @@ def summarize_runs(rows: Sequence[ExperimentRun]) -> dict[str, dict[str, float]]
         }
     return summaries
 
+def _write_outcomes_svg(
+    summaries: dict[str, dict[str, float]],
+    path: Path,
+    title: str = "Connect Four game outcomes",
+) -> None:
+    width, height = 900, 520
+    left, right, top, bottom = 90, 35, 75, 110
+    plot_width = width - left - right
+    plot_height = height - top - bottom
+    outcomes = (
+        ("mean_wins", "Wins", "#70AD47"),
+        ("mean_draws", "Draws", "#A5A5A5"),
+        ("mean_losses", "Losses", "#C0504D"),
+    )
+    items = list(summaries.items())
+    band_width = plot_width / max(len(items), 1)
+    bar_width = min(90, band_width * 0.55)
+    maximum = max(
+        (sum(summary[key] for key, _, _ in outcomes) for _, summary in items),
+        default=1.0,
+    )
+    maximum = max(maximum, 1e-9)
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'viewBox="0 0 {width} {height}" role="img">',
+        f"<title>{html.escape(title)}</title>",
+        '<rect width="100%" height="100%" fill="white"/>',
+        f'<text x="{width / 2}" y="32" text-anchor="middle" '
+        'font-family="sans-serif" font-size="22" font-weight="bold">'
+        f"{html.escape(title)}</text>",
+        "<desc>Mean wins, draws and losses per run for each strategy.</desc>",
+    ]
+
+    # Legend
+    for i, (_, label, color) in enumerate(outcomes):
+        x = left + i * 100
+        parts.extend((
+            f'<rect x="{x}" y="48" width="14" height="14" fill="{color}"/>',
+            f'<text x="{x + 20}" y="60" font-family="sans-serif" '
+            f'font-size="13">{label}</text>',
+        ))
+
+    # Grid and y-axis
+    for tick in range(6):
+        value = maximum * tick / 5
+        y = top + plot_height * (1 - value / maximum)
+        parts.append(
+            f'<line x1="{left}" y1="{y:.1f}" x2="{left + plot_width}" '
+            f'y2="{y:.1f}" stroke="#d9d9d9"/>'
+        )
+        parts.append(
+            f'<text x="{left - 12}" y="{y + 5:.1f}" text-anchor="end" '
+            f'font-family="sans-serif" font-size="13">{value:.1f}</text>'
+        )
+    parts.extend((
+        f'<line x1="{left}" y1="{top}" x2="{left}" y2="{top + plot_height}" '
+        'stroke="#333"/>',
+        f'<line x1="{left}" y1="{top + plot_height}" '
+        f'x2="{left + plot_width}" y2="{top + plot_height}" stroke="#333"/>',
+        f'<text x="22" y="{top + plot_height / 2}" transform="rotate(-90 22 '
+        f'{top + plot_height / 2})" text-anchor="middle" font-family="sans-serif" '
+        'font-size="14">Mean games per run</text>',
+    ))
+
+    # Stacked bars (wins at the bottom, then draws, then losses)
+    for index, (strategy, summary) in enumerate(items):
+        center_x = left + band_width * (index + 0.5)
+        bar_x = center_x - bar_width / 2
+        y_bottom = top + plot_height
+        for key, _, color in outcomes:
+            value = summary[key]
+            segment_height = value / maximum * plot_height
+            y_top = y_bottom - segment_height
+            parts.append(
+                f'<rect x="{bar_x:.1f}" y="{y_top:.1f}" width="{bar_width:.1f}" '
+                f'height="{segment_height:.1f}" fill="{color}"/>'
+            )
+            if value > 0 and segment_height >= 18:
+                parts.append(
+                    f'<text x="{center_x:.1f}" y="{y_top + segment_height / 2 + 5:.1f}" '
+                    'text-anchor="middle" font-family="sans-serif" font-size="13" '
+                    f'fill="white" font-weight="bold">{value:.2f}</text>'
+                )
+            y_bottom = y_top
+        parts.append(
+            f'<text x="{center_x:.1f}" y="{top + plot_height + 25}" '
+            'text-anchor="middle" font-family="sans-serif" font-size="14">'
+            f"{html.escape(strategy)}</text>"
+        )
+
+    parts.append("</svg>")
+    path.write_text("\n".join(parts), encoding="utf-8")
 
 def _write_svg(
     summaries: dict[str, dict[str, float]],
@@ -309,6 +406,7 @@ def save_results(
         title="Connect Four evaluation time",
         axis_label="Mean elapsed time per run (seconds)",
     )
+    _write_outcomes_svg(summaries, output_dir / "strategy_outcomes.svg")
 
 
 def main() -> None:
